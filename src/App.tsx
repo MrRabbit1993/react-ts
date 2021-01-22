@@ -10,7 +10,7 @@ interface DataSource {
 }
 function App() {
   const point = useMousePosition()
-  const [loading, data] = useUrlLoader('https://dog.ceo/api/breeds/image/random', [point.x])
+  const [loading, data] = useUrlLoader('https://dog.ceo/api/breeds/image/random')
   const dataSource = data as DataSource
   return (
     <div className="App">
