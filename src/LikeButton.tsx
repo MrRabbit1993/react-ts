@@ -1,8 +1,11 @@
-import React, { useState, FC, useEffect, useRef } from 'react'
+import React, { useState, FC, useEffect, useRef, useContext } from 'react'
+import { ThemeContext } from './App'
 const LikeButton: FC = () => {
   const [count, setCount] = useState(0)
   const couts = useRef(0)
   const inputDom = useRef<HTMLInputElement>(null)
+  const theme = useContext(ThemeContext)
+  console.log('========', theme)
   function handler() {
     setTimeout(() => {
       alert(couts.current)
