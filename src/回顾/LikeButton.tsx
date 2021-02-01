@@ -1,5 +1,5 @@
 import React, { useState, FC, useEffect, useRef, useContext } from 'react'
-import { ThemeContext } from './App'
+import { ThemeContext } from './app'
 const LikeButton: FC = () => {
   const [count, setCount] = useState(0)
   const couts = useRef(0)
