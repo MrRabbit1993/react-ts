@@ -13,7 +13,7 @@ const PositionTr: FC = () => {
       document.removeEventListener('click', updatePoint)
     }
   }, []) // 使用空数组来限制不必要每次都执行effect
-  console.log('render 之前')
+  console.log('render    之前')
   return (
     <p>
       x:{point.x},y:{point.y}
