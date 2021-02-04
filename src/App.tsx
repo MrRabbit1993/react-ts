@@ -7,7 +7,16 @@ function App() {
       <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
         hello
       </Button>
+      <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>
+        hello
+      </Button>
+      <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
+        danger
+      </Button>
       <Button btnType={ButtonType.Link} href="http://www.baidu.com">
+        百度
+      </Button>
+      <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
         百度
       </Button>
     </div>
