@@ -1,12 +1,15 @@
 import React from 'react'
-
+import Button, { ButtonSize, ButtonType } from './components/Button'
 function App() {
   return (
     <div className="App">
-      <h1>测试</h1>
-      <h2>测试</h2>
-      <h3>测试</h3>
-      <code>const a = "abc"</code>
+      <Button disabled>按钮</Button>
+      <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+        hello
+      </Button>
+      <Button btnType={ButtonType.Link} href="http://www.baidu.com">
+        百度
+      </Button>
     </div>
   )
 }
