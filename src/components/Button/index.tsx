@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { ButtonProps } from './type'
 import { ButtonType } from './enum'
 export * from './enum'
+export * from './type'
 const Button: FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href, ...restProps } = props
   const classes = classNames('btn', className, {
