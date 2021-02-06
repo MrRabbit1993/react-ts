@@ -20,8 +20,18 @@ export interface MenuProps {
  */
 
 export interface MenuItemProps {
-  index?: number
+  index: number
   disabled?: boolean
   className?: string
   style?: React.CSSProperties
+}
+
+/**
+ * @desc:MenuContext接口约束
+ * @Author: MrRabbit
+ * @Date: 2021-02-06 10:45:17
+ */
+export interface IMenuContext {
+  index: number
+  onSelect?: (selectedIndex: number) => void
 }
