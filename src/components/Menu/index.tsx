@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 import { MenuProps, IMenuContext } from './type'
 import { MenuContext } from './context'
+export * from './type'
 const Menu: FC<MenuProps> = (props) => {
   const { className, mode, style, children, defaultIndex, onSelect } = props
 
@@ -23,7 +24,7 @@ const Menu: FC<MenuProps> = (props) => {
     onSelect: handlerClick
   }
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={passContext}>{children}</MenuContext.Provider>
     </ul>
   )
