@@ -22,7 +22,8 @@ const Menu: FC<MenuProps> = (props) => {
   }
   const passContext: IMenuContext = {
     index: currentActive ? currentActive : 0,
-    onSelect: handlerClick
+    onSelect: handlerClick,
+    mode: mode
   }
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {

@@ -34,6 +34,7 @@ export interface MenuItemProps {
 export interface IMenuContext {
   index: number
   onSelect?: (selectedIndex: number) => void
+  mode?: MenuMode
 }
 
 /**
