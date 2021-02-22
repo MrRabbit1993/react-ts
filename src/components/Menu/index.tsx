@@ -10,7 +10,8 @@ const Menu: FC<MenuProps> = (props) => {
   const [currentActive, setActive] = useState(defaultIndex)
 
   const classes = classNames('menu', className, {
-    'menu-vertical': mode === 'vertical'
+    'menu-vertical': mode === 'vertical',
+    'menu-horizontal': mode !== 'vertical'
   })
 
   const handlerClick = (index: number) => {
@@ -27,7 +28,7 @@ const Menu: FC<MenuProps> = (props) => {
     return React.Children.map(children, (child, index) => {
       const childElement = child as FunctionComponentElement<MenuItemProps>
       const { displayName } = childElement.type
-      if (displayName === 'MenuItem') {
+      if (displayName === 'MenuItem' || displayName === 'SubMenu') {
         return cloneElement(childElement, { index }) // 自动注入index,外层无需在手动加入index
       } else {
         console.error('Waring:Menu has a child which is not a MenuItem')

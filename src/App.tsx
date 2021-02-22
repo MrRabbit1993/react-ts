@@ -2,6 +2,7 @@ import React from 'react'
 import Button, { ButtonSize, ButtonType } from './components/Button'
 import Menu from './components/Menu'
 import MenuItem from './components/Menu/menu-item'
+import SubMenu from './components/Menu/sub-menu'
 function App() {
   return (
     <div className="App">
@@ -10,11 +11,13 @@ function App() {
         onSelect={(index) => {
           console.log(index)
         }}>
-        <MenuItem index={0}>cool link</MenuItem>
-        <MenuItem index={1} disabled>
-          cool link2
-        </MenuItem>
-        <MenuItem index={2}>cool link3</MenuItem>
+        <MenuItem>cool link</MenuItem>
+        <MenuItem disabled>cool link2</MenuItem>
+        <SubMenu title="dropdown">
+          <MenuItem>dropdown1</MenuItem>
+          <MenuItem>dropdown2</MenuItem>
+        </SubMenu>
+        <MenuItem>cool link3</MenuItem>
       </Menu>
 
       <Menu
@@ -23,11 +26,13 @@ function App() {
         onSelect={(index) => {
           console.log(index)
         }}>
-        <MenuItem index={0}>cool link</MenuItem>
-        <MenuItem index={1} disabled>
-          cool link2
-        </MenuItem>
-        <MenuItem index={2}>cool link3</MenuItem>
+        <MenuItem>cool link</MenuItem>
+        <MenuItem disabled>cool link2</MenuItem>
+        <SubMenu title="dropdown">
+          <MenuItem>dropdown1</MenuItem>
+          <MenuItem>dropdown2</MenuItem>
+        </SubMenu>
+        <MenuItem>cool link3</MenuItem>
       </Menu>
       <Button disabled>按钮</Button>
       <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>

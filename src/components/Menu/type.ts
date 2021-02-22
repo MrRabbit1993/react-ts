@@ -35,3 +35,14 @@ export interface IMenuContext {
   index: number
   onSelect?: (selectedIndex: number) => void
 }
+
+/**
+ * @desc:SubMenuProps
+ * @Author: MrRabbit
+ * @Date: 2021-02-22 10:36:27
+ */
+export interface SubMenuProps {
+  index?: number
+  title: string
+  className?: string
+}
