@@ -1,12 +1,14 @@
-import React, { FC, useState, FunctionComponentElement, useContext } from 'react'
+import React, { FC, useState, FunctionComponentElement, useContext, cloneElement } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './context'
 import { SubMenuProps, MenuItemProps } from './type'
 import { setTimeout } from 'timers'
 const SubMenu: FC<SubMenuProps> = (props) => {
   const { index, title, children, className } = props
-  const [menuOpen, setOpen] = useState(false)
   const context = useContext(MenuContext)
+  const openSubMenus = context.defaultOpenSubMenus as Array<string>
+  const isOpend = index && context.mode === 'vertical' ? openSubMenus.includes(index) : false
+  const [menuOpen, setOpen] = useState(isOpend)
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': index === context.index
   })
@@ -34,10 +36,10 @@ const SubMenu: FC<SubMenuProps> = (props) => {
     const subMenuClasses = classNames('submenu', {
       'menu-opened': menuOpen
     })
-    const childrenComponent = React.Children.map(children, (child, index) => {
+    const childrenComponent = React.Children.map(children, (child, i) => {
       const childElement = child as FunctionComponentElement<MenuItemProps>
       if (childElement.type.displayName === 'MenuItem') {
-        return childElement
+        return cloneElement(childElement, { index: `${index}-${i}` }) // 自动注入index,外层无需在手动加入index
       } else {
         console.error('Waring:SubMenu has a child which is not a MenuItem')
       }

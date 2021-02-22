@@ -6,11 +6,12 @@
 type MenuMode = 'horizontal' | 'vertical'
 
 export interface MenuProps {
-  defaultIndex?: number
+  defaultIndex?: string
   className?: string
   mode?: MenuMode
   style?: React.CSSProperties
-  onSelect?: (selectedIndex: number) => void
+  onSelect?: (selectedIndex: string) => void
+  defaultOpenSubMenus?: string[]
 }
 
 /**
@@ -20,7 +21,7 @@ export interface MenuProps {
  */
 
 export interface MenuItemProps {
-  index?: number
+  index?: string
   disabled?: boolean
   className?: string
   style?: React.CSSProperties
@@ -32,9 +33,10 @@ export interface MenuItemProps {
  * @Date: 2021-02-06 10:45:17
  */
 export interface IMenuContext {
-  index: number
-  onSelect?: (selectedIndex: number) => void
+  index: string
+  onSelect?: (selectedIndex: string) => void
   mode?: MenuMode
+  defaultOpenSubMenus?: string[]
 }
 
 /**
@@ -43,7 +45,7 @@ export interface IMenuContext {
  * @Date: 2021-02-22 10:36:27
  */
 export interface SubMenuProps {
-  index?: number
+  index?: string
   title: string
   className?: string
 }

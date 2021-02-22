@@ -10,7 +10,7 @@ const MenuItem: FC<MenuItemProps> = (props) => {
     'is-active': index === context.index
   })
   const handlerClick = () => {
-    if (context.onSelect && !disabled && typeof index === 'number') {
+    if (context.onSelect && !disabled && typeof index === 'string') {
       context.onSelect(index)
     }
   }

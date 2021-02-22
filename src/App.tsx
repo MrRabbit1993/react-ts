@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Menu
-        defaultIndex={0}
+        defaultIndex="0"
         onSelect={(index) => {
           console.log(index)
         }}>
@@ -21,7 +21,8 @@ function App() {
       </Menu>
 
       <Menu
-        defaultIndex={0}
+        defaultIndex="0"
+        defaultOpenSubMenus={['2']}
         mode="vertical"
         onSelect={(index) => {
           console.log(index)
