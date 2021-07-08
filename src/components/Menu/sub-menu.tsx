@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { MenuContext } from './context'
 import { SubMenuProps, MenuItemProps } from './type'
 import { setTimeout } from 'timers'
+import Icon from './../Icon'
 const SubMenu: FC<SubMenuProps> = (props) => {
   const { index, title, children, className } = props
   const context = useContext(MenuContext)
@@ -10,7 +11,9 @@ const SubMenu: FC<SubMenuProps> = (props) => {
   const isOpend = index && context.mode === 'vertical' ? openSubMenus.includes(index) : false
   const [menuOpen, setOpen] = useState(isOpend)
   const classes = classNames('menu-item submenu-item', className, {
-    'is-active': index === context.index
+    'is-active': index === context.index,
+    'is-opened': menuOpen,
+    'is-vertical': context.mode === 'vertical'
   })
   const handlerClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -50,6 +53,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
     <li key={index} className={classes} {...mouseEvents}>
       <div className="submenu-title" {...clickEvents}>
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>

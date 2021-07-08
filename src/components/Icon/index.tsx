@@ -7,7 +7,7 @@ import { IconProps } from './type'
 export * from './type'
 const Icon: FC<IconProps> = (props) => {
   const { className, theme, ...restProps } = props
-  const classes = classNames('viking-icon', className, {
+  const classes = classNames('icon', className, {
     [`icon-${theme}`]: theme
   })
   return <FontAwesomeIcon className={classes} {...restProps} />

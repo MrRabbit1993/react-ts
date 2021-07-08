@@ -5,12 +5,10 @@ import Button, { ButtonSize, ButtonType } from './components/Button'
 import Menu from './components/Menu'
 import MenuItem from './components/Menu/menu-item'
 import SubMenu from './components/Menu/sub-menu'
-import Icon from './components/Icon'
 library.add(fas)
 const App: FC = () => {
   return (
     <div className="App">
-      <Icon icon="coffee" theme="danger" size="10x" />
       <Menu
         defaultIndex="0"
         onSelect={(index) => {
