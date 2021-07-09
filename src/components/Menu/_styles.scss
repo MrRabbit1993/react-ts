@@ -57,7 +57,7 @@
     }
   }
   .submenu {
-    opacity: 0;
+    // opacity: 0;
     // display: none;
     list-style: none;
     padding-left: 0;
@@ -75,8 +75,7 @@
       }
     }
     &.menu-opened {
-      display: block;
-      opacity: 1;
+      // display: block;
     }
   }
   &-vertical {

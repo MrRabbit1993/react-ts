@@ -49,7 +49,7 @@ const SubMenu: FC<SubMenuProps> = (props) => {
       }
     })
     return (
-      <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear>
+      <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear unmountOnExit={true}>
         <ul className={subMenuClasses}>{childrenComponent}</ul>
       </CSSTransition>
     )
