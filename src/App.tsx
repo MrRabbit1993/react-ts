@@ -1,12 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button, { ButtonSize, ButtonType } from './components/Button'
 import Menu from './components/Menu'
 import MenuItem from './components/Menu/menu-item'
 import SubMenu from './components/Menu/sub-menu'
+import Transition from './components/Transition'
 library.add(fas)
 const App: FC = () => {
+  const [show, setShow] = useState(false)
   return (
     <div className="App">
       <Menu
@@ -38,6 +40,7 @@ const App: FC = () => {
         </SubMenu>
         <MenuItem>cool link3</MenuItem>
       </Menu>
+
       <Button disabled>按钮</Button>
       <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
         hello
@@ -54,6 +57,18 @@ const App: FC = () => {
       <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
         百度
       </Button>
+      <Button
+        size={ButtonSize.Large}
+        onClick={() => {
+          setShow(!show)
+        }}>
+        Toggle
+      </Button>
+      <Transition in={show} timeout={300} animation="zoom-in-left">
+        <div>
+          <p>edit</p>
+        </div>
+      </Transition>
     </div>
   )
 }

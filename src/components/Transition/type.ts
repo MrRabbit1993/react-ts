@@ -13,4 +13,5 @@ type AnimationName = 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-i
 // }
 export type TransitionProps = CSSTransitionProps & {
   animation?: AnimationName
+  wrapper?: boolean
 }
