@@ -1,11 +1,16 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { withInfo } from '@storybook/addon-info'
 import Button, { ButtonType, ButtonSize } from './../components/Button'
 import './../styles/index.scss'
 export default {
   title: 'Example/Button',
   component: Button,
+  // decorators: [withInfo],
+  parameters: {
+    info: { inline: true, header: false }
+  },
   argTypes: {
     backgroundColor: { control: 'color' }
   }
