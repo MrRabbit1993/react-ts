@@ -1,8 +1,8 @@
 import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-
-import { Button } from './Button'
-
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import Button, { ButtonType, ButtonSize } from './../components/Button'
+import './../styles/index.scss'
 export default {
   title: 'Example/Button',
   component: Button,
@@ -13,25 +13,22 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  primary: true,
-  label: 'Button'
+export const Default = Template.bind({})
+Default.args = {
+  btnType: ButtonType.Primary,
+  size: ButtonSize.Large,
+  children: 'Button',
+  onClick: action('clicked')
 }
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  label: 'Button'
+export const Type = Template.bind({})
+Type.args = {
+  btnType: ButtonType.Primary,
+  children: 'Button',
+  onClick: action('clicked')
 }
-
-export const Large = Template.bind({})
-Large.args = {
-  size: 'large',
-  label: 'Button'
-}
-
-export const Small = Template.bind({})
-Small.args = {
-  size: 'small',
-  label: 'Button'
+export const Size = Template.bind({})
+Size.args = {
+  size: ButtonSize.Large,
+  children: 'Button',
+  onClick: action('clicked')
 }
