@@ -8,9 +8,9 @@ export default {
   title: 'Example/Button',
   component: Button,
   // decorators: [withInfo],
-  parameters: {
-    info: { inline: true, header: false }
-  },
+  // parameters: {
+  //   info: { inline: true, header: false }
+  // },
   argTypes: {
     backgroundColor: { control: 'color' }
   }
