@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, RenderResult, cleanup } from '@testing-library/react'
+import { render, fireEvent, RenderResult, cleanup, wait } from '@testing-library/react'
 import Menu, { MenuProps } from '../../components/Menu'
 import MenuItem from '../../components/Menu/menu-item'
 import SubMenu from './../../components/Menu/sub-menu'
@@ -87,14 +87,14 @@ describe('test Menu adn MenuItem component', () => {
     expect(wrapper.queryByText('drop1')).not.toBeVisible()
     const dropdownElement = wrapper.getByText('dropdown')
     fireEvent.mouseEnter(dropdownElement)
-    await await (() => {
+    await wait(() => {
       // 这里需要用await 因为鼠标事件有300毫秒的定时器
       expect(wrapper.queryByText('drop1')).toBeVisible()
     })
     fireEvent.click(wrapper.getByText('drop1'))
     expect(testProps.onSelect).toHaveBeenCalledWith('3-0')
     fireEvent.mouseLeave(dropdownElement)
-    await await (() => {
+    await wait(() => {
       // 这里需要用await 因为鼠标事件有300毫秒的定时器
       expect(wrapper.queryByText('drop1')).not.toBeVisible()
     })
