@@ -14,7 +14,7 @@ export type DataSourceType<T = {}> = T & DataSourceObject
  * @Date: 2021-08-02 15:30:22
  */
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
-  fetchSuggestions: (str: string) => DataSourceType[]
+  fetchSuggestions: (str: string) => DataSourceType[] | Promise<DataSourceType[]>
   onSelect?: (item: DataSourceType) => void
   renderOption?: (item: DataSourceType) => ReactElement
 }
