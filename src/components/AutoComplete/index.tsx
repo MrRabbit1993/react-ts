@@ -1,9 +1,10 @@
-import react, { ChangeEvent, FC, useState, useEffect, KeyboardEvent } from 'react'
+import react, { ChangeEvent, FC, useState, useEffect, KeyboardEvent, useRef } from 'react'
 import classNames from 'classnames'
 import Input from '../Input'
 import Icon from '../Icon'
 import { AutoCompleteProps, DataSourceType } from './type'
 import useDebounce from './../../hooks/useDebounce'
+import useClickOutside from './../../hooks/useClickOutside'
 export * from './type'
 
 const AutoComplete: FC<AutoCompleteProps> = (props) => {
@@ -12,9 +13,15 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [highLightIndex, setHighLightIndex] = useState<number>(-1)
+  const triggerSearch = useRef(false)
+  const componentRef = useRef<HTMLDivElement>(null)
   const debounceValue = useDebounce(inputValue, 500)
+
+  useClickOutside(componentRef, () => {
+    setSuggestions([])
+  })
   useEffect(() => {
-    if (debounceValue) {
+    if (debounceValue && triggerSearch.current) {
       const results = fetchSuggestions(debounceValue)
       if (results instanceof Promise) {
         //是一个promise链
@@ -35,12 +42,14 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const onHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()
     setInputValue(value)
+    triggerSearch.current = true
   }
   // 下拉菜单选中事件
   const onHandleSelect = (item: DataSourceType) => {
     setInputValue(item.value)
     setSuggestions([])
     onSelect?.(item)
+    triggerSearch.current = false
   }
 
   const highLight = (index: number) => {
@@ -92,7 +101,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }
 
   return (
-    <div className="auto-complete">
+    <div className="auto-complete" ref={componentRef}>
       <Input value={inputValue} onChange={onHandleChange} onKeyDown={onHandleKeyDown} {...restProps} />
       {loading ? (
         <ul>
