@@ -88,7 +88,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
       <ul>
         {suggestions.map((item, index) => {
           const classnames = classNames('suggestion-item', {
-            'item-highlighted': index === highLightIndex
+            'is-active': index === highLightIndex
           })
           return (
             <li key={index} onClick={() => onHandleSelect(item)} className={classnames}>
