@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react'
 import { UploadFile, UploadProps } from './type'
-import Button, { ButtonType } from './../Button'
 import UploadList from './uploadList'
 import Dragger from './dragger'
 import axios from 'axios'
@@ -107,7 +106,6 @@ const Upload: FC<UploadProps> = (props) => {
         }
       })
       .then((resp) => {
-        console.log(resp)
         uploadFileList(_file, { status: 'success', response: resp.data })
         onSuccess?.(resp.data, file)
         onChange?.(file)

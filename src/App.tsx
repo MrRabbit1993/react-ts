@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import Button, { ButtonSize, ButtonType } from './components/Button'
 import Menu from './components/Menu'
 import MenuItem from './components/Menu/menu-item'
 import SubMenu from './components/Menu/sub-menu'
 import Transition from './components/Transition'
-library.add(fas)
+library.add(faUserSecret)
 const App: FC = () => {
   const [show, setShow] = useState(false)
   return (
