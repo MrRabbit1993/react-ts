@@ -31,4 +31,5 @@ export interface UploadProps {
   withCredentials?: boolean
   accept?: string
   multiple?: boolean
+  drag?: boolean
 }

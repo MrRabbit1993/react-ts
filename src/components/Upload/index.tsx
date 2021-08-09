@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useRef, useState } from 'react'
 import { UploadFile, UploadProps } from './type'
 import Button, { ButtonType } from './../Button'
 import UploadList from './uploadList'
+import Dragger from './dragger'
 import axios from 'axios'
 export * from './type'
 const Upload: FC<UploadProps> = (props) => {
@@ -19,7 +20,9 @@ const Upload: FC<UploadProps> = (props) => {
     data,
     withCredentials,
     accept,
-    multiple
+    multiple,
+    children,
+    drag
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
@@ -122,10 +125,19 @@ const Upload: FC<UploadProps> = (props) => {
     onRemove?.(file)
   }
   return (
-    <div className="">
-      <Button btnType={ButtonType.Primary} onClick={handlerClick}>
-        Upload file
-      </Button>
+    <div className="viking-upload-component">
+      <div className="viking-upload-input" style={{ display: 'inline-block' }} onClick={handlerClick}>
+        {drag ? (
+          <Dragger
+            onFile={(files) => {
+              uploadFiles(files)
+            }}>
+            {children}
+          </Dragger>
+        ) : (
+          children
+        )}
+      </div>
       <input
         className="viking-file-input"
         style={{ display: 'none' }}
