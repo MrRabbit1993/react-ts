@@ -25,4 +25,8 @@ export interface UploadProps {
   beforeUpload?: (file: File) => boolean | Promise<File> // 上传之前到钩子
   onChange?: (file: File) => void // 文件改变
   onRemove?: (file: UploadFile) => void //移除
+  headers?: { [key: string]: any }
+  name?: string
+  data?: { [key: string]: any }
+  withCredentials?: boolean
 }
