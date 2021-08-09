@@ -4,7 +4,7 @@ import Button, { ButtonType } from './../Button'
 import axios from 'axios'
 export * from './type'
 const Upload: FC<UploadProps> = (props) => {
-  const { action, onProgress, onError, onSuccess } = props
+  const { action, onProgress, onError, onSuccess, beforeUpload, onChange } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const handlerClick = () => {
     if (fileInput.current) {
@@ -24,28 +24,44 @@ const Upload: FC<UploadProps> = (props) => {
   const uploadFiles = (files: FileList) => {
     let postFiles = Array.from(files)
     postFiles.forEach((file) => {
-      const formData = new FormData()
-      formData.append(file.name, file)
-      axios
-        .post(action, formData, {
-          headers: {
-            'Content-type': 'multipart/form-data'
-          },
-          onDownloadProgress: (e) => {
-            let percentage = Math.round((e.loaded * 100) / e.total) || 0
-            if (percentage < 100) {
-              onProgress?.(percentage, file)
-            }
-          }
-        })
-        .then((resp) => {
-          console.log(resp)
-          onSuccess?.(resp.data, file)
-        })
-        .catch((err) => {
-          onError?.(err, file)
-        })
+      if (!beforeUpload) {
+        postFile(file)
+      } else {
+        const result = beforeUpload(file)
+        if (result && result instanceof Promise) {
+          result.then((processedFile) => {
+            postFile(processedFile)
+          })
+        } else if (result !== false) {
+          postFile(file)
+        }
+      }
     })
+  }
+  const postFile = (file: File) => {
+    const formData = new FormData()
+    formData.append(file.name, file)
+    axios
+      .post(action, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data'
+        },
+        onDownloadProgress: (e) => {
+          let percentage = Math.round((e.loaded * 100) / e.total) || 0
+          if (percentage < 100) {
+            onProgress?.(percentage, file)
+          }
+        }
+      })
+      .then((resp) => {
+        console.log(resp)
+        onSuccess?.(resp.data, file)
+        onChange?.(file)
+      })
+      .catch((err) => {
+        onError?.(err, file)
+        onChange?.(file)
+      })
   }
   return (
     <div className="">
