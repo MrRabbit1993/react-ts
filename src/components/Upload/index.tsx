@@ -1,11 +1,13 @@
-import React, { ChangeEvent, FC, useRef } from 'react'
-import { UploadProps } from './type'
+import React, { ChangeEvent, FC, useRef, useState } from 'react'
+import { UploadFile, UploadProps } from './type'
 import Button, { ButtonType } from './../Button'
+import UploadList from './uploadList'
 import axios from 'axios'
 export * from './type'
 const Upload: FC<UploadProps> = (props) => {
-  const { action, onProgress, onError, onSuccess, beforeUpload, onChange } = props
+  const { action, onProgress, onError, onSuccess, beforeUpload, onChange, defaultFileList, onRemove } = props
   const fileInput = useRef<HTMLInputElement>(null)
+  const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
   const handlerClick = () => {
     if (fileInput.current) {
       fileInput.current.click()
@@ -63,6 +65,12 @@ const Upload: FC<UploadProps> = (props) => {
         onChange?.(file)
       })
   }
+  const handlerRemove = (file: UploadFile) => {
+    setFileList((prevList) => {
+      return prevList.filter((item) => item.uid !== file.uid)
+    })
+    onRemove?.(file)
+  }
   return (
     <div className="">
       <Button btnType={ButtonType.Primary} onClick={handlerClick}>
@@ -75,6 +83,7 @@ const Upload: FC<UploadProps> = (props) => {
         ref={fileInput}
         onChange={handlerFileChange}
       />
+      <UploadList fileList={fileList} onRemove={handlerRemove} />
     </div>
   )
 }
