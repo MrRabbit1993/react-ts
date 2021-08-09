@@ -1,5 +1,5 @@
 import React, { createContext } from 'react'
-import './App.css'
+import './App.scss'
 import LikeButton from './LikeButton'
 import PositionTr from './Position'
 import useMousePosition from './hooks/MousePosition'
