@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Progress from '../Process'
+import Progress from '../Progress'
 import { UploadFile } from './type'
 import Icon from './../Icon'
 import { UploadListProps } from './listType'
