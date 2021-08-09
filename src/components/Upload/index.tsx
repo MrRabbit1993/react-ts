@@ -17,7 +17,9 @@ const Upload: FC<UploadProps> = (props) => {
     headers,
     name,
     data,
-    withCredentials
+    withCredentials,
+    accept,
+    multiple
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
@@ -75,7 +77,10 @@ const Upload: FC<UploadProps> = (props) => {
       percent: 0,
       raw: file
     }
-    setFileList([_file, ...fileList])
+    // setFileList([_file, ...fileList])
+    setFileList((prevList) => {
+      return [_file, ...prevList]
+    })
     const formData = new FormData()
     formData.append(name || 'file', file)
     if (data) {
@@ -125,6 +130,8 @@ const Upload: FC<UploadProps> = (props) => {
         className="viking-file-input"
         style={{ display: 'none' }}
         type="file"
+        accept={accept}
+        multiple={multiple}
         ref={fileInput}
         onChange={handlerFileChange}
       />

@@ -29,4 +29,6 @@ export interface UploadProps {
   name?: string
   data?: { [key: string]: any }
   withCredentials?: boolean
+  accept?: string
+  multiple?: boolean
 }
