@@ -1,3 +1,6 @@
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+library.add(faUserSecret)
 export { default as Button } from './components/Button'
 export { default as AutoComplete } from './components/AutoComplete'
 export { default as Icon } from './components/Icon'
